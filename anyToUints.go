@@ -9,7 +9,7 @@ import (
 func RangeLimitingToUint64(it any, what string, min, max uint64) (uint64, error) {
 	reflectValue, err := Value(it)
 	if err != nil {
-		return 0, err
+		return 0, fmt.Errorf("'%v' expected, but Value('%v') %w", what, it, err)
 	}
 	if !reflectValue.CanUint() {
 		return 0, fmt.Errorf("'%v' expected, but was: %v", what, reflectValue.Kind())
